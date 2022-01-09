@@ -1,1 +1,0 @@
-{"version":3,"sources":["partials/_header.scss"],"names":[],"mappings":"AAAA,OACE,YAAA,CACA,WAAA,CACA","file":"main.9a6f193e.css","sourceRoot":"../src","sourcesContent":["header {\n  height: 230px;\n  width: 320px;\n  background-image: url('../images/header/Rectangle1.png');\n}\n"]}

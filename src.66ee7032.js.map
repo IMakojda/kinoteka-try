@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.js"],"names":["fetch","then","res","json","console","log"],"mappings":";AAAAA,MAAM,0FACDC,KAAKC,GAAOA,EAAIC,QAChBF,KAAKG,QAAQC","file":"src.66ee7032.js","sourceRoot":"../src","sourcesContent":["fetch('https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5')\n    .then(res => res.json())\n    .then(console.log)\n"]}
