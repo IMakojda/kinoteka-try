@@ -1,0 +1,63 @@
+main {
+  margin: 0;
+  padding: 20px 15px 0 15px;
+}
+
+.movie-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   margin-left: calc(-1 * 20px);
+  //   margin-top: calc(-1 * 20px);
+  //   text-align: center;
+  //   align-items: center;
+}
+.card {
+  min-width: 280px;
+  min-height: 443px;
+}
+
+.list_item {
+  list-style: none;
+  width: 280px;
+  height: 443px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  //   flex-basis: calc(100% / 1 - 20px);
+}
+
+.poster,
+.poster_img {
+  width: 280px;
+  height: 402px;
+  border-radius: 5px;
+}
+
+.img-movies {
+  margin-bottom: 10px;
+}
+.caption-movies {
+}
+.caption-name {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.caption-genre-year {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0;
+  color: #ff6b08;
+}

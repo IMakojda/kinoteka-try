@@ -11,7 +11,7 @@ export default class MoviesApiService{
         
             return fetch('https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5')
                 .then(res => res.json())
-                .then(res => console.log(res.results));
+                .then(res => res);
             
         // .then(console.log);
         //     const movies = response.json();

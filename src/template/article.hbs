@@ -1,0 +1,27 @@
+<ul class="movie-list">
+{{#each this}}
+  <li class="list_item">
+    <article class="card">
+
+      <div class="img-movies">
+          <picture class="poster">
+            <img src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="" class="poster_img">
+          </picture>
+                              
+      </div>
+      <div class="caption-movies">
+          <h3 class="caption-name">{{title}}</h3>
+          <p class="caption-genre-year">{{genre_ids}} | {{release_date}}</p>
+      </div>
+  </article>
+  </li>
+{{/each}}
+
+{{!-- <h2 class="movie__title">{{title}}</h2>
+    <p class="movie__genre">
+      genres: 
+      {{!-- {{#each genresNames as |genre|}}
+        {{genre}} <!-- a list of genre names for this particular movie -->
+      {{/each}} --}}
+    </p>
+    <img src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="" class="movie__image"> --}}
