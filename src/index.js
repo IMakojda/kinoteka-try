@@ -1,15 +1,16 @@
 import MoviesApiService from './api/fetchApiService';
 import articlesTps from './template/article.hbs';
+import getGenres from "./api/fetchGenre";
+import changeGenre from "./api/fetchGenre"
 const newsApi = new MoviesApiService();
+
 const refs = {
     main:document.querySelector('.main')
 }
-// fetch('https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5')
-//     .then(res => res.json())
-//     .then(console.log)
 
+getGenres();
+  
 
-// // https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5
 onSearch ()
 function onSearch (){
     // e.preventDefault();
@@ -27,8 +28,30 @@ function onSearch (){
     //   lazyScroll(0)
     //   refs.loadMore.style.display="flex"
     // });
+
+const genre = {};
+fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3284913a940180ec63ebc0044db949d5&language=en-US')
+    .then(res => res.json())
+    .then(({ genres }) =>
+        genres.forEach(el => {
+        genre[el.id] = el.name;
+    }
+    ) 
+)
+
     newsApi.fetchMovie()
-        .then(({ results }) =>{
+        .then(({results}) => {for (const el of results) {
+            // el.genre_ids = el.genre_ids.slice(0, 1);
+            if (el.release_date) { el.release_date = el.release_date.slice(0, 4); } else { el.release_date = el.first_air_date.slice(0, 4); }
+            // results[genre_ids].forEach(element => {
+            //      element = genre.element;    
+            //  });
+            for (let i = 0; i < el.genre_ids.length; i++) {
+                el.genre_ids[i] = genre[el.genre_ids[i]];
+                
+            }
+        }
+        console.log(results);
             appendArticlesMarkup(results)
         })
 
@@ -40,7 +63,7 @@ refs.main.insertAdjacentHTML('beforeend',articlesTps(results));
 
 
 }
-
+// console.log(genre);
 // function clearArticles (){
 //     refs.gallery.innerHTML = '';
 // }
