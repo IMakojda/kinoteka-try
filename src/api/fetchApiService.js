@@ -7,7 +7,8 @@ export default class MoviesApiService{
     }
      
     async fetchMovie() {
-        const url = `https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5`;
+        
+        const url = `https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5&page=${this.page}`;
         
         try {
         
@@ -48,17 +49,20 @@ export default class MoviesApiService{
     get popularMovie() {
         
     }
-
+    get pages() {
+       return this.page  
+    }
+    
     get queryMocie(){
         return this.searchQuery;
     }
 
-    set query(newQuery){
+    set query(nyji){
         this.searchQuery=newQuery
     }
 
-    pageNext (){
-        this.page += 1;
+    pageSet(a){
+        this.page = a;
     }
 
     resetPage(){
