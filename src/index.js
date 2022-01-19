@@ -2,7 +2,8 @@ import MoviesApiService from './api/fetchApiService';
 import articlesTps from './template/article.hbs';
 import {renderPages} from "./js/pagination"
 const newsApi = new MoviesApiService();
-
+// import { swipeNextPage } from './js/swipePagination';
+// swipeNextPage()
 const refs = {
 main:document.querySelector('.main')
 }
@@ -26,9 +27,11 @@ export function onSearch (){
 // )
 
     newsApi.fetchMovie()
-    .then(({results}) => {for (const el of results) {
+    .then(({results, total_pages}) => {for (const el of results) {
       if (el.release_date) { el.release_date = el.release_date.slice(0, 4); } else { el.release_date = el.first_air_date.slice(0, 4); }
     }
+      newsApi.totalPageSet(total_pages);
+      console.log(newsApi.totalPages);
     appendArticlesMarkup(results)
     renderPages();   
     })
@@ -46,6 +49,39 @@ export function appendArticlesMarkup(results){
     
    
 }
+
+
+
+
+    window.addEventListener('touchstart', swipeNextPage, false);
+    
+  
+
+
+
+
+  let x1 = null;
+function swipeNextPage(ev) {
+    // window.addEventListener('touchmove', handleTouchMove, false);
+    const fTouch = ev.touches[0];
+    x1 = fTouch.clientX;
+
+    console.log(x1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import { createPagination } from './js/pagination';

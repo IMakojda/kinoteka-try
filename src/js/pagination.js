@@ -81,6 +81,11 @@ function PaginationButton(totalPages, maxPagesVisible = 10, nameDiv, currentPage
     createAndSetupButton('>>>', 'next-page', disabled.next(), () => currentPage += 1),
     (btn) => btn.disabled = disabled.next()
   )
+
+  // buttons.set(
+  //   createAndSetupButton('^^^', 'upTo', disabled,
+      
+  //   ))
   
   buttons.forEach((_, btn) => frag.appendChild(btn));
   paginationButtonContainer.appendChild(frag);
@@ -107,7 +112,7 @@ function PaginationButton(totalPages, maxPagesVisible = 10, nameDiv, currentPage
   })
 
 
-export function renderPages() {
+export function renderPages(totalPages) {
   let swCurrent = window.innerWidth;
   if (swCurrent < 767) {
     
@@ -118,12 +123,22 @@ export function renderPages() {
       document.querySelector(".pagination-buttons1200").remove()
     }
       
-      const paginationButtons = new PaginationButton(1000, 5,767);
+      const paginationButtons = new PaginationButton(totalPages, 5,767);
 
       paginationButtons.render();
 
       paginationButtons.onChange(e => {
-        let pageCurent=e.target.value
+        let pageCurrent = e.target.value;
+        console.log(pageCurrent);
+        nextApi.pageSet(pageCurrent);
+        nextApi.fetchMovie()
+        .then(({results}) => {for (const el of results) {
+        if (el.release_date) { el.release_date = el.release_date.slice(0, 4); } else { el.release_date = el.first_air_date.slice(0, 4); }
+        }
+          appendArticlesMarkup(results);
+          renderPages(); 
+        })
+        
       });
     
   } else {
@@ -134,7 +149,7 @@ export function renderPages() {
       document.querySelector(".pagination-buttons767").remove()
     }
       
-      const paginationButtons = new PaginationButton(1000, 7,1200);
+      const paginationButtons = new PaginationButton(totalPages, 7,1200);
 
       paginationButtons.render();
 

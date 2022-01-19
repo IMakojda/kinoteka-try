@@ -3,7 +3,8 @@ import Notiflix from 'notiflix';
 export default class MoviesApiService{
     constructor(){
         this.searchQuery="";
-        this.page=1;
+        this.page = 1;
+        this.totalPages = 10
     }
      
     async fetchMovie() {
@@ -52,15 +53,10 @@ export default class MoviesApiService{
     get pages() {
        return this.page  
     }
-    
-    get queryMocie(){
-        return this.searchQuery;
+    totalPageSet(a) {
+        this.totalPages=a
     }
-
-    set query(nyji){
-        this.searchQuery=newQuery
-    }
-
+   
     pageSet(a){
         this.page = a;
     }
