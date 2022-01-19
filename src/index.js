@@ -7,9 +7,8 @@ const newsApi = new MoviesApiService();
 const refs = {
 main:document.querySelector('.main')
 }
-// import Paginations from "./js/constructorPagin";
 
-// const pagin = new Paginations;
+
 
 onSearch();
 
@@ -50,26 +49,33 @@ export function appendArticlesMarkup(results){
    
 }
 
-
-
-
-    window.addEventListener('touchstart', swipeNextPage, false);
-    
+document.addEventListener('touchstart', swipeNextPage, false);
+document.addEventListener('touchmove', handleTouchMove, false);    
   
 
 
 
 
-  let x1 = null;
+let xStart = null;
+  
 function swipeNextPage(ev) {
+  //  ev.preventDefault();
     // window.addEventListener('touchmove', handleTouchMove, false);
-    const fTouch = ev.touches[0];
-    x1 = fTouch.clientX;
-
-    console.log(x1);
+    const firstTouch = ev.touches[0];
+    xStart = firstTouch.clientX;
 }
 
 
+function handleTouchMove(e) {
+  if (!xStart) { return false };
+  //  e.preventDefault();
+  let xEnd = e.touches[0].clientX;
+  
+  
+  let xMoves = xStart - xEnd;
+  if (xMoves>100){console.log("hello");}
+
+}
 
 
 
