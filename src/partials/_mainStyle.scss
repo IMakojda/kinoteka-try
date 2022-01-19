@@ -65,12 +65,13 @@ main {
 .search_svg {
   stroke: red;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .upBtn {
-  width: 40px;
-  height: 40px;
-  background: #ff6b08;
-  // display: flex;
+  width: 50px;
+  height: 50px;
+  background: hsl(24, 100%, 52%);
   text-align: center;
   border-radius: 5px;
   position: fixed;
@@ -79,13 +80,16 @@ main {
   right: 20px;
   margin: 0 auto;
   transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
-  // opacity: 0;
-  // visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
   z-index: 1000;
   cursor: pointer;
+  background: url(../images/icon-up-arrow.png) no-repeat;
+  background-size: cover;
 }
 
 .showUpBtn {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }

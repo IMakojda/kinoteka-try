@@ -1,24 +1,25 @@
 
 createUpBtn()
 function createUpBtn() {
-    const buttonUp = document.createElement('button');
+    const buttonUp = document.createElement('a');
     console.log(buttonUp);
-    buttonUp.textContent = "^";
     buttonUp.className = `upBtn`;
     document.querySelector('body').appendChild(buttonUp);
 
 
-const btn = document.querySelector('.upBtn');
-    console.log(btn);
+    const btn = document.querySelector('.upBtn');
+    btn.addEventListener("click",()=>{if (window.pageYOffset > 0) {
+      window.scrollTo(600,0);
+    }})
     
     window.addEventListener("scroll", () => {
-        let a = window.scrollTop;
+        let a = window.pageYOffset;
         console.log(a);
-//   if (window.scrollTop() > 300) {
-//     btn.addClass('showUpBtn');
-//   } else {
-//     btn.removeClass('showUpBtn');
-//   }
+  if (a > 300) {
+    btn.classList.add('showUpBtn');
+  } else {
+    btn.classList.remove('showUpBtn');
+  }
 })
 
 // btn.on('click', function(e) {
