@@ -2,35 +2,53 @@ import MoviesApiService from './api/fetchApiService';
 import articlesTps from './template/article.hbs';
 import {renderPages} from "./js/pagination"
 const newsApi = new MoviesApiService();
-// import { swipeNextPage } from './js/swipePagination';
-// swipeNextPage()
+
 const refs = {
 main:document.querySelector('.main')
 }
 
-
-
 onSearch();
 
+export function onSearch() {
+  newsApi.genres()
+  
+  console.log(newsApi.genreList);
+  newsApi.fetchMovie()
+    // .then(console.log)
+    // .then(({genre_ids}) => {
+    //   console.log(genre_ids);
+    //   genre_ids.forEach(el => {
+    //     el = newsApi.genreList.find(option => option.id === el)
+    //   })
+    // })
 
-export function onSearch (){
 
-// const genre = {};
-// fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3284913a940180ec63ebc0044db949d5&language=en-US')
-//     .then(res => res.json())
-//     .then(({ genres }) =>
-//         genres.forEach(el => {
-//         genre[el.id] = el.name;
-//     }
-//     ) 
-// )
-
-    newsApi.fetchMovie()
     .then(({results, total_pages}) => {for (const el of results) {
       if (el.release_date) { el.release_date = el.release_date.slice(0, 4); } else { el.release_date = el.first_air_date.slice(0, 4); }
+      if (!el.title) { el.title = el.original_name }
+      if (el.genre_ids) {
+        // console.log(el.genre_ids);
+        let a = el.genre_ids;
+        a.map(d => {
+          console.log(d);
+          let t = newsApi.genreList
+          
+           console.log(t);
+        })
+          
+        // a.forEach(item => {
+        //   console.log(item);
+        //   planets.map(planet => planet.toUpperCase())
+        //   item = newsApi.genreList.find(option => option.id === "item")
+        //   // console.log(item);
+        // })
+      }
+      
     }
-      newsApi.totalPageSet(total_pages);
-      console.log(newsApi.totalPages);
+      console.log(results);
+      
+    newsApi.totalPageSet(total_pages);
+    console.log(newsApi.totalPages);
     appendArticlesMarkup(results)
     renderPages();   
     })
@@ -40,21 +58,10 @@ export function onSearch (){
 export function appendArticlesMarkup(results){
     refs.main.innerHTML=""
     refs.main.insertAdjacentHTML('beforeend', articlesTps(results));
-    
-
-    // refs.main.insertAdjacentHTML('beforeend', pagin.paginMob())
-    // pagin.renderPage(20,5)
-    // document.querySelector(".listPages").addEventListener("click", pagin.pageNext());
-    
-   
 }
 
 document.addEventListener('touchstart', swipeNextPage, false);
 document.addEventListener('touchmove', handleTouchMove, false);    
-  
-
-
-
 
 let xStart = null;
   

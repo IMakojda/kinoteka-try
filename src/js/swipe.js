@@ -2,7 +2,7 @@
 createUpBtn()
 function createUpBtn() {
     const buttonUp = document.createElement('a');
-    console.log(buttonUp);
+    // console.log(buttonUp);
     buttonUp.className = `upBtn`;
     document.querySelector('body').appendChild(buttonUp);
 
@@ -14,7 +14,7 @@ function createUpBtn() {
     
     window.addEventListener("scroll", () => {
         let a = window.pageYOffset;
-        console.log(a);
+        // console.log(a);
   if (a > 300) {
     btn.classList.add('showUpBtn');
   } else {

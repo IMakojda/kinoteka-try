@@ -50,6 +50,7 @@ main {
   text-transform: uppercase;
   color: #000;
   margin: 0;
+  margin-bottom: 2px;
 }
 
 .caption-genre-year {
@@ -84,7 +85,7 @@ html {
   visibility: hidden;
   z-index: 1000;
   cursor: pointer;
-  background: url(../images/icon-up-arrow.png) no-repeat;
+  background: url(../images/icon_up_arrow.png) no-repeat;
   background-size: cover;
 }
 
@@ -92,4 +93,23 @@ html {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+.genre {
+  margin: 0 2px;
+  background-color: hsla(24, 100%, 52%, 0.658);
+  border-radius: 4px;
+  text-align: center;
+  height: 20px;
+  // display: inline-flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+.year {
+  color: hsl(24, 100%, 52%);
+  margin-left: 5px;
+}
+.title {
+  margin-right: 5px;
+  color: #000;
 }
