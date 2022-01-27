@@ -8,7 +8,7 @@ export default class MoviesApiService{
         this.genreList = [];
     }
     genres() {
-        fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3284913a940180ec63ebc0044db949d5')
+        fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3284913a940180ec63ebc0044db949d5&language=ru')
             .then(response => response.json())
         .then(({genres})=> {genres.forEach(element => {
             this.genreList.push(element);
@@ -18,7 +18,7 @@ export default class MoviesApiService{
 
     async fetchMovie() {
         
-        const url = `https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5&page=${this.page}`;
+        const url = `https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5&page=${this.page}&language=ru`;
         
         try {
         
