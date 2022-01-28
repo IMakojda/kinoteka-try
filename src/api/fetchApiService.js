@@ -39,9 +39,11 @@ export default class MoviesApiService{
     get popularMovie() {
         
     }
+    
     get pages() {
        return this.page  
     }
+
     totalPageSet(a) {
         this.totalPages=a
     }
