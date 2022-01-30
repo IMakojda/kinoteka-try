@@ -1,38 +1,29 @@
 const axios = require('axios').default;
 import Notiflix from 'notiflix';
+const baseUrl = "https://api.themoviedb.org/3/";
+const apiKey = "api_key=3284913a940180ec63ebc0044db949d5";
+
 export default class MoviesApiService{
     constructor(){
         this.searchQuery="";
         this.page = 1;
-        this.totalPages = 10
+        this.totalPages = 0
         this.genreList = [];
+        this.language = en;
     }
-    genres() {
-        fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=3284913a940180ec63ebc0044db949d5&language=ru')
-            .then(response => response.json())
-        .then(({genres})=> {genres.forEach(element => {
-            this.genreList.push(element);
-        });})
-        
-     }
 
     async fetchMovie() {
-        
-        const url = `https://api.themoviedb.org/3/trending/all/day?api_key=3284913a940180ec63ebc0044db949d5&page=${this.page}&language=ru`;
+        const url = `${baseUrl}trending/all/day?${apiKey}&page=${this.page}&language=${this.language}`;
         
         try {
-        
         const response = await axios.get(url);
         const res=response.data;
-        console.log(res);
-        
-            return res;
+        return res;
         }
         
         catch (error) {
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
         document.querySelector('.load-more').style.display="none";    
-        
         }
     }
 
